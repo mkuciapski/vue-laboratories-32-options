@@ -11,18 +11,20 @@
 <body>
     <div id="app">
         <div class="flex flex-wrap justify-center">
-            <div v-for="competence in competences" class="card bg-base-100 w-40 shadow-sm m-[0.15rem]">            
-                <div class="card-body">
-                <h2 class="card-title justify-center">{{ competence.Name.toUpperCase()}}</h2>
-                <figure>
-                    <img
-                    v-bind:src="`/assets/${competence.Picture}`"
-                    v-bind:alt="competence.Name" class="w-30" />
-                </figure>
-                <p class="font-bold">Poziom: {{competence.Level}}</p>
-                <p>Opis: {{competence.Description}}</p>
+            <template v-for="competence in competences" :key="competence.Id">            
+                <div v-if="competence.Level" class="card bg-base-100 w-40 shadow-sm m-[0.15rem]">
+                    <div class="card-body">
+                    <h2 class="card-title justify-center">{{ competence.Name.toUpperCase()}}</h2>
+                    <figure>
+                        <img
+                        v-bind:src="`/assets/${competence.Picture}`"
+                        v-bind:alt="competence.Name" class="w-30" />
+                    </figure>
+                    <p class="font-bold">Poziom: {{competence.Level}}</p>
+                    <p v-if="competence.Description">Opis: {{competence.Description}}</p>
+                    </div>
                 </div>
-            </div>
+            </template>
         </div>
     </div>
     
