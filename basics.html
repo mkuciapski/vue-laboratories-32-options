@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Vue 3 basics</h1>
+        <p v-once>Hello {{ user.FirstName}}</p>
+        <input v-model="user.FirstName">
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data(){
+                return {
+                    user: {
+                        FirstName: 'Elon',
+                        LastName: 'Mask'
+                    },
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
