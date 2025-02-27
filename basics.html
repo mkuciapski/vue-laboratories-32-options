@@ -12,10 +12,10 @@
     <div id="app">
         <h1>Vue 3 basics</h1>
         <p>Hello {{ user.FirstName.split('').reverse().join('')}}</p>
-        <input v-show="!allowEdit" v-model="user.FirstName" v-bind:disabled="!allowEdit"> <input type="checkbox" v-model="allowEdit"/> Allow edit
-    
+        <input v-bind:style="todosStyle" v-model="user.FirstName" v-bind:disabled="!allowEdit"> <input type="checkbox" v-model="allowEdit"/> Allow edit
+        <input type="number" v-model="todosStyle['font-size']" />
         <template v-for="(todo, index) in todos" :key="todo.ID">
-            <p v-show="todo.Completed === true">
+            <p v-bind:style="{fontSize: todosStyle['font-size'] + 'rem'}" v-show="todo.Completed === true">
                 {{index + 1}}. {{todo.Name}}
             </p>
             <!-- <p v-else-if="todo.Completed === null">
@@ -33,8 +33,12 @@
                     todos: [
                         {ID: 1, Name: 'Learn Vue', Completed: true },
                         {ID: 2, Name: 'Learn React', Completed: null},
-                        {ID: 3, Name: 'Learn Angular', Completed: false},
+                        {ID: 3, Name: 'Learn Angular', Completed: true},
                     ],
+                    todosStyle: {
+                        'font-size': 2,
+                        color: 'red'
+                    },
                     user: {
                         FirstName: 'Elon',
                         LastName: 'Mask'
