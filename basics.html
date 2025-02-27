@@ -11,11 +11,22 @@
         <h1>Vue 3 basics</h1>
         <p>Hello {{ user.FirstName.split('').reverse().join('')}}</p>
         <input v-model="user.FirstName" v-bind:disabled="!allowEdit"> <input type="checkbox" v-model="allowEdit"/> Allow edit
+    
+        <template v-for="(todo, index) in todos" :key="todo.ID">
+            <p v-if="todo.Completed">
+                {{index + 1}}. {{todo.Name}}
+            </p>
+        </template>
     </div>
     <script>
         const app = Vue.createApp({
             data(){
                 return {
+                    todos: [
+                        {ID: 1, Name: 'Learn Vue', Completed: true },
+                        {ID: 2, Name: 'Learn React', Completed: false},
+                        {ID: 3, Name: 'Learn Angular', Completed: true},
+                    ],
                     user: {
                         FirstName: 'Elon',
                         LastName: 'Mask'
