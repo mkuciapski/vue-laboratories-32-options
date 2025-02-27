@@ -9,8 +9,8 @@
 <body>
     <div id="app">
         <h1>Vue 3 basics</h1>
-        <p v-once>Hello {{ user.FirstName}}</p>
-        <input v-model="user.FirstName">
+        <p>Hello {{ user.FirstName.split('').reverse().join('')}}</p>
+        <input v-model="user.FirstName" v-bind:disabled="!allowEdit"> <input type="checkbox" v-model="allowEdit"/> Allow edit
     </div>
     <script>
         const app = Vue.createApp({
@@ -20,6 +20,7 @@
                         FirstName: 'Elon',
                         LastName: 'Mask'
                     },
+                    allowEdit: true
                 }
             }
         }).mount('#app')
