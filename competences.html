@@ -1,52 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Competences</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.9/daisyui.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.9/daisyui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/vue@3"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-        <div class="flex flex-wrap justify-center">
-            <template v-for="competence in competences" :key="competence.Id">            
-                <div v-if="competence.Level" class="card bg-base-100 w-40 shadow-sm m-[0.15rem]">
-                    <div class="card-body">
-                    <h2 class="card-title justify-center">{{ competence.Name.toUpperCase()}}</h2>
-                    <figure>
-                        <img
-                        v-bind:src="`/assets/${competence.Picture}`"
-                        v-bind:alt="competence.Name" class="w-30" />
-                    </figure>
-                    <p class="font-bold">Poziom: {{competence.Level}}</p>
-                    <p v-if="competence.Description">Opis: {{competence.Description}}</p>
-                    </div>
-                </div>
-            </template>
-        </div>
+      <div class="flex flex-wrap justify-center">
+        <template v-for="competence in competences" :key="competence.Id">
+          <div
+            v-if="competence.Level"
+            class="card bg-base-100 w-40 shadow-sm m-[0.15rem]"
+          >
+            <div class="card-body">
+              <h2 class="card-title justify-center">
+                {{ competence.Name.toUpperCase()}}
+              </h2>
+              <figure>
+                <img
+                  v-bind:src="`/assets/${competence.Picture}`"
+                  v-bind:alt="competence.Name"
+                  class="w-30"
+                />
+              </figure>
+              <p
+                class="font-bold"
+                v-bind:style="{color: getCompetenceLevelColor(competence)}"
+              >
+                Poziom: {{competence.Level}}
+              </p>
+              <p v-if="competence.Description">
+                Opis: {{competence.Description}}
+              </p>
+            </div>
+          </div>
+        </template>
+      </div>
     </div>
-    
+
     <script>
-        Vue.createApp({
-            data(){
-                return {
-                    competences: [
-                        { Id: 1, Name: "Bootstrap", Level: 4, Picture: "bootstrap.svg", Description: "Wersja 3" },
-                        { Id: 2, Name: "AngularJS", Level: 3, Picture: "angularjs.png", Description: "" },
-                        { Id: 3, Name: "Angular", Level: 4, Picture: "angular.png", Description: "" },
-                        { Id: 4, Name: "Ionic", Level: 4, Picture: "ionic.png", Description: "Wersja 2" },
-                        { Id: 5, Name: "PhoneGap", Level: 0, Picture: "phonegap.png", Description: "Tylko absolutne podstawy" },
-                        { Id: 6, Name: "ReactJS", Level: 1, Picture: "react.png", Description: "Tylko absolutne podstawy" },
-                        { Id: 7, Name: "Xamarin", Level: 2, Picture: "xamarin.png", Description: "Bez API dla IOS" },
-                        { Id: 8, Name: "HTML5", Level: 5, Picture: "html5.png", Description: "Bez WebSockets i Database API" },
-                        { Id: 9, Name: "CSS3", Level: 4, Picture: "css3.png", Description: "" },
-                        { Id: 10, Name: "WebAPI", Level: 5, Picture: "webapi.png", Description: "" }
-                    ]
-                }
-            }
-        }).mount("#app")
+      Vue.createApp({
+        data() {
+          return {
+            competences: [
+              {
+                Id: 1,
+                Name: "Bootstrap",
+                Level: 4,
+                Picture: "bootstrap.svg",
+                Description: "Wersja 3",
+              },
+              {
+                Id: 2,
+                Name: "AngularJS",
+                Level: 3,
+                Picture: "angularjs.png",
+                Description: "",
+              },
+              {
+                Id: 3,
+                Name: "Angular",
+                Level: 4,
+                Picture: "angular.png",
+                Description: "",
+              },
+              {
+                Id: 4,
+                Name: "Ionic",
+                Level: 4,
+                Picture: "ionic.png",
+                Description: "Wersja 2",
+              },
+              {
+                Id: 5,
+                Name: "PhoneGap",
+                Level: 0,
+                Picture: "phonegap.png",
+                Description: "Tylko absolutne podstawy",
+              },
+              {
+                Id: 6,
+                Name: "ReactJS",
+                Level: 1,
+                Picture: "react.png",
+                Description: "Tylko absolutne podstawy",
+              },
+              {
+                Id: 7,
+                Name: "Xamarin",
+                Level: 2,
+                Picture: "xamarin.png",
+                Description: "Bez API dla IOS",
+              },
+              {
+                Id: 8,
+                Name: "HTML5",
+                Level: 5,
+                Picture: "html5.png",
+                Description: "Bez WebSockets i Database API",
+              },
+              {
+                Id: 9,
+                Name: "CSS3",
+                Level: 4,
+                Picture: "css3.png",
+                Description: "",
+              },
+              {
+                Id: 10,
+                Name: "WebAPI",
+                Level: 5,
+                Picture: "webapi.png",
+                Description: "",
+              },
+            ],
+          };
+        },
+        methods: {
+          getCompetenceLevelColor(competence) {
+            return competence.Level < 3
+              ? "red"
+              : competence.Level > 3
+              ? "green"
+              : undefined;
+          },
+        },
+      }).mount("#app");
     </script>
-</body>
+  </body>
 </html>
