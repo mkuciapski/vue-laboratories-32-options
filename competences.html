@@ -41,7 +41,7 @@
               </figure>
               <p
                 class="font-bold"
-                v-bind:class="[{'text-error': competence.Level < 3}, {'text-success': competence.Level > 3}]"
+                v-bind:class="[{'text-red-700': competence.Level < 3}, {'text-green-700': competence.Level > 3}]"
               >
                 Poziom: {{competence.Level}}
               </p>
