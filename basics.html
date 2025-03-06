@@ -34,6 +34,15 @@
           v-model="user.FirstName"
           v-bind:disabled="!allowEdit"
         />
+
+        <input
+          v-bind:style="todosStyle"
+          v-model="user.LastName"
+          v-bind:disabled="!allowEdit"
+        />
+
+        {{ userFullName() }} | {{ userName }}
+
         <input type="checkbox" v-model="allowEdit" /> Allow edit
         <input type="number" v-model="todosStyle['font-size']" />
         <template v-for="(todo, index) in todos" :key="todo.ID">
@@ -72,7 +81,19 @@
             allowEdit: true,
           };
         },
+        computed: {
+          userName() {
+            return this.userFullName();
+          },
+        },
         methods: {
+          userFullName() {
+            let firstName = this.user.FirstName.toLowerCase();
+            firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+            const lastName = this.user.LastName.toUpperCase();
+
+            return `${firstName} ${lastName}`;
+          },
           send() {
             alert("send");
           },
