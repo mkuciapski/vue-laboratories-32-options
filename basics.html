@@ -14,29 +14,43 @@
   </head>
   <body>
     <div id="app">
-      <h1>Vue 3.X basics</h1>
-      <p>Hello {{ user.FirstName.split('').reverse().join('')}}</p>
-      <input
-        v-bind:style="todosStyle"
-        v-model="user.FirstName"
-        v-bind:disabled="!allowEdit"
-      />
-      <input type="checkbox" v-model="allowEdit" /> Allow edit
-      <input type="number" v-model="todosStyle['font-size']" />
-      <template v-for="(todo, index) in todos" :key="todo.ID">
-        <p
-          v-bind:style="{fontSize: todosStyle['font-size'] + 'rem'}"
-          v-show="todo.Completed === true"
+      <form v-on:submit.prevent="send">
+        <div
+          v-on:click.capture="console.log('outer')"
+          class="bg-yellow-300 w-40 h-40 ml-40"
         >
-          {{index + 1}}. {{todo.Name}}
-        </p>
-        <!-- <p v-else-if="todo.Completed === null">
+          Vue
+          <div v-on:click="console.log('inner')" class="bg-red-300 w-20 h-20">
+            Nuxt
+          </div>
+        </div>
+
+        <input class="btn" type="submit" value="send" />
+
+        <h1>Vue 3.X basics</h1>
+        <p>Hello {{ user.FirstName.split('').reverse().join('')}}</p>
+        <input
+          v-bind:style="todosStyle"
+          v-model="user.FirstName"
+          v-bind:disabled="!allowEdit"
+        />
+        <input type="checkbox" v-model="allowEdit" /> Allow edit
+        <input type="number" v-model="todosStyle['font-size']" />
+        <template v-for="(todo, index) in todos" :key="todo.ID">
+          <p
+            v-bind:style="{fontSize: todosStyle['font-size'] + 'rem'}"
+            v-show="todo.Completed === true"
+          >
+            {{index + 1}}. {{todo.Name}}
+          </p>
+          <!-- <p v-else-if="todo.Completed === null">
                 <span class="text-yellow-600">{{index + 1}}. {{todo.Name}}</span>
             </p>
             <p v-else>
                 <span class="text-red-600">{{index + 1}}. {{todo.Name}}</span>
             </p> -->
-      </template>
+        </template>
+      </form>
     </div>
     <script>
       const app = Vue.createApp({
@@ -57,6 +71,11 @@
             },
             allowEdit: true,
           };
+        },
+        methods: {
+          send() {
+            alert("send");
+          },
         },
       }).mount("#app");
     </script>
