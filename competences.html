@@ -22,6 +22,19 @@
   </head>
   <body>
     <div id="app">
+      <div class="join mb-2">
+        <button class="btn join-item rounded-l-full pointer-events-none">
+          Podaj nazwę kompetencji
+        </button>
+        <!-- keydown, keypress, keyup -->
+        <input
+          v-model="searchText"
+          v-on:keyup="searchCompetences"
+          class="input join-item w-100"
+          placeholder="szukaj"
+        />
+      </div>
+
       <div class="flex flex-wrap justify-center">
         <template v-for="competence in competences" :key="competence.Id">
           <div
@@ -64,6 +77,7 @@
       Vue.createApp({
         data() {
           return {
+            searchText: "",
             competences: [
               {
                 Id: 1,
@@ -139,6 +153,13 @@
           };
         },
         methods: {
+          searchCompetences() {
+            console.log(this.searchText);
+            //1. Pobranie tekstu wyszukiwania this.searchText
+            //2. Filtrowanie kompetencji - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+            // Podmiana w modelu renderowanych kompetencji
+            // ...   = competences.filter =
+          },
           getCompetenceLevelColor(competence) {
             return competence.Level < 3
               ? "red"
