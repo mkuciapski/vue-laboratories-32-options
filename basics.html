@@ -1,52 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.9/daisyui.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.9/daisyui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/vue@3"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-        <h1>Vue 3 basics</h1>
-        <p>Hello {{ user.FirstName.split('').reverse().join('')}}</p>
-        <input v-bind:style="todosStyle" v-model="user.FirstName" v-bind:disabled="!allowEdit"> <input type="checkbox" v-model="allowEdit"/> Allow edit
-        <input type="number" v-model="todosStyle['font-size']" />
-        <template v-for="(todo, index) in todos" :key="todo.ID">
-            <p v-bind:style="{fontSize: todosStyle['font-size'] + 'rem'}" v-show="todo.Completed === true">
-                {{index + 1}}. {{todo.Name}}
-            </p>
-            <!-- <p v-else-if="todo.Completed === null">
+      <h1>Vue 3.X basics</h1>
+      <p>Hello {{ user.FirstName.split('').reverse().join('')}}</p>
+      <input
+        v-bind:style="todosStyle"
+        v-model="user.FirstName"
+        v-bind:disabled="!allowEdit"
+      />
+      <input type="checkbox" v-model="allowEdit" /> Allow edit
+      <input type="number" v-model="todosStyle['font-size']" />
+      <template v-for="(todo, index) in todos" :key="todo.ID">
+        <p
+          v-bind:style="{fontSize: todosStyle['font-size'] + 'rem'}"
+          v-show="todo.Completed === true"
+        >
+          {{index + 1}}. {{todo.Name}}
+        </p>
+        <!-- <p v-else-if="todo.Completed === null">
                 <span class="text-yellow-600">{{index + 1}}. {{todo.Name}}</span>
             </p>
             <p v-else>
                 <span class="text-red-600">{{index + 1}}. {{todo.Name}}</span>
             </p> -->
-        </template>
+      </template>
     </div>
     <script>
-        const app = Vue.createApp({
-            data(){
-                return {
-                    todos: [
-                        {ID: 1, Name: 'Learn Vue', Completed: true },
-                        {ID: 2, Name: 'Learn React', Completed: null},
-                        {ID: 3, Name: 'Learn Angular', Completed: true},
-                    ],
-                    todosStyle: {
-                        'font-size': 2,
-                        color: 'red'
-                    },
-                    user: {
-                        FirstName: 'Elon',
-                        LastName: 'Mask'
-                    },
-                    allowEdit: true
-                }
-            }
-        }).mount('#app')
+      const app = Vue.createApp({
+        data() {
+          return {
+            todos: [
+              { ID: 1, Name: "Learn Vue", Completed: true },
+              { ID: 2, Name: "Learn React", Completed: null },
+              { ID: 3, Name: "Learn Angular", Completed: true },
+            ],
+            todosStyle: {
+              "font-size": 2,
+              color: "red",
+            },
+            user: {
+              FirstName: "Elon",
+              LastName: "Mask",
+            },
+            allowEdit: true,
+          };
+        },
+      }).mount("#app");
     </script>
-</body>
+  </body>
 </html>
