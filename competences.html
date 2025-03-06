@@ -36,7 +36,10 @@
       </div>
 
       <div class="flex flex-wrap justify-center">
-        <template v-for="competence in competences" :key="competence.Id">
+        <template
+          v-for="competence in filteredCompetences"
+          :key="competence.Id"
+        >
           <div
             v-if="competence.Level"
             class="card bg-base-100 w-40 shadow-sm m-[0.15rem]"
@@ -78,6 +81,7 @@
         data() {
           return {
             searchText: "",
+            filteredCompetences: [],
             competences: [
               {
                 Id: 1,
@@ -152,13 +156,15 @@
             ],
           };
         },
+        created() {
+          this.filteredCompetences = this.competences;
+        },
         methods: {
           searchCompetences() {
-            console.log(this.searchText);
-            //1. Pobranie tekstu wyszukiwania this.searchText
-            //2. Filtrowanie kompetencji - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-            // Podmiana w modelu renderowanych kompetencji
-            // ...   = competences.filter =
+            const searchText = this.searchText.toLowerCase();
+            this.filteredCompetences = this.competences.filter((competence) =>
+              competence.Name.toLowerCase().includes(searchText)
+            );
           },
           getCompetenceLevelColor(competence) {
             return competence.Level < 3
