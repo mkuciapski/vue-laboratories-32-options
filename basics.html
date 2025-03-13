@@ -14,6 +14,8 @@
   </head>
   <body>
     <div id="app">
+      <button class="btn" @click="user.FirstName = 'Elon'">Click me</button>
+
       <form v-on:submit.prevent="send">
         <div
           v-on:click.capture="console.log('outer')"
@@ -41,7 +43,8 @@
           v-bind:disabled="!allowEdit"
         />
 
-        {{ userFullName() }} | {{ userName }}
+        <!-- {{ userFullName() }} -->
+        {{ userName }}
 
         <input type="checkbox" v-model="allowEdit" /> Allow edit
         <input type="number" v-model="todosStyle['font-size']" />
@@ -79,6 +82,10 @@
               LastName: "Mask",
             },
             allowEdit: true,
+
+            //Sort - 10
+
+            //Filter - 10
           };
         },
         computed: {
@@ -88,6 +95,7 @@
         },
         methods: {
           userFullName() {
+            console.log("userFullName");
             let firstName = this.user.FirstName.toLowerCase();
             firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
             const lastName = this.user.LastName.toUpperCase();
@@ -97,6 +105,10 @@
           send() {
             alert("send");
           },
+
+          //Sort - 100
+
+          //Filter - 100
         },
       }).mount("#app");
     </script>
